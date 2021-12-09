@@ -6,6 +6,7 @@ import "./style.css";
 
 
 const App = () => {
+    console.log("flwjngjnf");
     return (
         <div> 
             <Header />
