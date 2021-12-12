@@ -33,7 +33,7 @@ nav {
   max-width: 92.2rem;
 }
 
-.heading{
+.heading {
   color: #fafafa;
   margin-right: 2rem;
   font-size: 2rem;
@@ -76,25 +76,25 @@ nav {
   font-size: 2rem;
 }
 
-.items{
+.items {
   cursor: pointer;
 }
-.plus{
-   font-size: 2.2rem;
-   color: #2E4C6D
+.plus {
+  font-size: 2.2rem;
+  color: #2e4c6d;
 }
-.add-task{
+.add-task {
   font-size: 2rem;
+  font-weight: bold;
   color: #1e2022;
   margin-left: 1rem;
 }
 
-
-.task-dialog{
+.task-dialog {
   margin-top: 1rem;
 }
 
-input{
+input {
   border-radius: 3px;
   width: 100%;
   border: solid 1px #ddd;
@@ -102,13 +102,14 @@ input{
   padding: 0 1rem;
 }
 
-.action-container{
+.action-container {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
 }
 
-.add-btn, .cancel-btn{
+.add-btn,
+.cancel-btn {
   background-color: #52616b;
   border-radius: 3px;
   color: white;
@@ -116,9 +117,25 @@ input{
   font-weight: bold;
   padding: 6px 12p;
   letter-spacing: normal;
+  height: 27px;
 }
 
-.add-btn:active{
+.add-btn:disabled {
+  background-color: #95d1cc;
+}
+.add-btn:active {
   transform: scale(0.9);
 }
 
+.task-item-container {
+  margin-top: 4rem;
+  padding: 0 2rem;
+}
+.task-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-item:not(:last-child) {
+  border-bottom: 1px solid #52616b;
+}

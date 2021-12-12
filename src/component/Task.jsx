@@ -1,36 +1,52 @@
-import React,{useState} from 'react'
+import React, { useState } from "react";
+import AddTask from "./AddTask";
+import TaskItems from "./TaskItems";
 
+const TaskHeader = {
+  INBOX: "Inbox",
+  TODAY: "Today",
+  NEXT: "Next 7 days",
+};
 
-const AddTask = ({onCancel}) => {
-  const [task, setTask] = useState("")
-return(
-<div className="task-dialog">
-          <input value={task} onChange={(event) => setTask(event.target.value)}/>
-            <div className="action-container">
-              <div className="btn-container">
-                <button className="add-btn">Add task</button>
-                <button className="cancel-btn" onClick={onCancel}>cancel</button>
-              </div>
-              <div className="calendar"></div>
-            </div>
-          </div>
-)
-}
-const Task = () => {
-  const [showAddTask, setShowAddTask] = useState(false)
-    return (
-        <div className="tasks">
-        <h1>Inbox</h1>
-          <div className="items" 
-          onClick={() => setShowAddTask((prevState) => (!prevState))}
-          >
-           <span className="plus">+</span>
-           <span className="add-task">Add Task</span>
-          </div>
-         {showAddTask && <AddTask onCancel={() => setShowAddTask(false)} />}
-          
+const Task = ({ selectedTab }) => {
+  const [showAddTask, setShowAddTask] = useState(false);
+  const [tasks, setTask] = useState([]);
+
+  const cancelHandler = () => setShowAddTask(false);
+
+  const addTaskHandler = (text, date) => {
+    const addNewTask = {
+      text,
+      date: date || new Date(),
+    };
+    setTask((prevState) => {
+      return [...prevState, addNewTask];
+    });
+  };
+  return (
+    <div className="tasks">
+      <h1>{TaskHeader[selectedTab]}</h1>
+
+      {selectedTab === "INBOX" && (
+        <div
+          className="items"
+          onClick={() => setShowAddTask((prevState) => !prevState)}
+        >
+          <span className="plus">+</span>
+          <span className="add-task">Add Task</span>
         </div>
-    )
-}
+      )}
+      {showAddTask && (
+        <AddTask onCancel={cancelHandler} onAdd={addTaskHandler} />
+      )}
 
-export default Task
+      {tasks.length > 0 ? (
+        <TaskItems tasks={tasks} selectedTab={selectedTab} />
+      ) : (
+        <p>No Tasks Yet.</p>
+      )}
+    </div>
+  );
+};
+
+export default Task;
