@@ -18,9 +18,10 @@ const Task = ({ selectedTab }) => {
     const addNewTask = {
       text,
       date: date || new Date(),
+      id: Math.random().toString(),
     };
     setTask((prevState) => {
-      return [...prevState, addNewTask];
+      return [addNewTask, ...prevState];
     });
   };
   return (

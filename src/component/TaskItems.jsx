@@ -4,6 +4,7 @@ import isBefore from "date-fns/isBefore";
 import isAfter from "date-fns/isAfter";
 import addDays from "date-fns/addDays";
 import isToday from "date-fns/isToday";
+import userEvent from "@testing-library/user-event";
 
 const TaskItems = ({ selectedTab, tasks }) => {
   const FORMAT = "dd/MM/yyyy";
@@ -24,7 +25,7 @@ const TaskItems = ({ selectedTab, tasks }) => {
   return (
     <div className="task-item-container">
       {taskToRender.map((task) => (
-        <div className="task-item">
+        <div className="task-item" key={task.id}>
           <p>{task.text}</p>
           <p>{dateFnsFormat(new Date(task.date), FORMAT)}</p>
         </div>
